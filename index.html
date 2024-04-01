@@ -8,7 +8,7 @@
   </head>
   <body class="px-24 pt-10 flex flex-col">
     <h1 class="text-primary text-5xl font-bold text-center">Dio's Library</h1>
-    <button class="btn btn-secondary m-auto mt-12">
+    <button class="btn btn-secondary m-auto mt-12" onclick="add_book.showModal()">
       <svg
         class="w-6 h-6 text-secondary-content-800"
         aria-hidden="true"
@@ -28,6 +28,27 @@
       </svg>
       Add Book
     </button>
+
+    <dialog id="add_book" class="modal">
+        <div class="modal-box">
+          <form method="dialog"><button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button></form>
+          <h3 class="font-bold text-lg mb-6">Adding Book...</h3>
+
+          <form class="w-full">
+            <input type="text" placeholder="Title" class="input input-bordered w-full mb-3" required/>
+            <input type="text" placeholder="Author" class="input input-bordered w-full mb-3" required/>
+            <input type="number" placeholder="Number of Pages" class="input input-bordered w-full mb-3" required/>
+            <div class="form-control">
+              <label class="cursor-pointer label">
+                <span class="label-text text-base">Read already?</span>
+                <input type="checkbox" checked="checked" class="checkbox checkbox-accent checkbox-sm" />
+              </label>
+            </div>
+            <button type="submit" class="btn btn-accent mt-6">Submit</button>
+          </form>
+
+        </div>
+    </dialog>
 
     <div class="w-4/5 mt-6 grid grid-cols-3 gap-x-80 gap-y-7">
       <div class="card w-96 bg-base-200 shadow-xl">
