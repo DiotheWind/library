@@ -1,19 +1,7 @@
 const cardContainer = document.querySelector("#card-container");
+const form = document.querySelector("#add-book-form");
 
-const library = [
-  {
-    title: "The Silent Patient",
-    author: "Deo Seth Jabagat",
-    pageCount: 45,
-    readStatus: false,
-  },
-  {
-    title: "What the Hell",
-    author: "Mark Pratesh",
-    pageCount: 512,
-    readStatus: true,
-  },
-];
+const library = [];
 
 function Book(title, author, pageCount, readStatus) {
   this.title = title;
@@ -22,7 +10,12 @@ function Book(title, author, pageCount, readStatus) {
   this.readStatus = readStatus;
 }
 
+function addBookToLibrary(book) {
+  library.push(book);
+}
+
 function displayLibrary(library) {
+  cardContainer.innerHTML = "";
   library.forEach((book) => {
     const card = createCard(book);
     cardContainer.appendChild(card);
@@ -80,6 +73,17 @@ function createCard(book) {
   return card;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const title = document.querySelector("#title").value;
+  const author = document.querySelector("#author").value;
+  const number = Number(document.querySelector("#number").value);
+  const checkbox = document.querySelector("#checkbox").checked ? true : false;
+
+  const book = new Book(title, author, number, checkbox);
+  addBookToLibrary(book);
+
+  form.reset();
   displayLibrary(library);
 });
+

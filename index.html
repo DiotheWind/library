@@ -44,21 +44,24 @@
         </form>
         <h3 class="font-bold text-lg mb-6">Adding Book...</h3>
 
-        <form class="w-full">
+        <form class="w-full" id="add-book-form">
           <input
             type="text"
+            id="title"
             placeholder="Title"
             class="input input-bordered w-full mb-3"
             required
           />
           <input
             type="text"
+            id="author"
             placeholder="Author"
             class="input input-bordered w-full mb-3"
             required
           />
           <input
             type="number"
+            id="number"
             placeholder="Number of Pages"
             class="input input-bordered w-full mb-3"
             required
@@ -68,6 +71,7 @@
               <span class="label-text text-base">Read already?</span>
               <input
                 type="checkbox"
+                id="checkbox"
                 checked="checked"
                 class="checkbox checkbox-accent checkbox-sm"
               />
