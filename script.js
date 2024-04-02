@@ -2,7 +2,7 @@ const cardContainer = document.querySelector("#card-container");
 const form = document.querySelector("#add-book-form");
 const addBookModal = document.querySelector("#add_book_modal");
 
-const library = [];
+let library = JSON.parse(localStorage.getItem("library")) || [];
 
 function Book(title, author, pageCount, readStatus) {
   this.title = title;
@@ -13,6 +13,7 @@ function Book(title, author, pageCount, readStatus) {
 
 function addBookToLibrary(book) {
   library.push(book);
+  updateLocalStorage();
 }
 
 function displayLibrary(library) {
@@ -79,12 +80,18 @@ function createCard(book, index) {
 
 function changeReadStatus(index) {
   library[index].readStatus = !library[index].readStatus;
+  updateLocalStorage();
   displayLibrary(library);
 }
 
 function removeBook(index) {
   library.splice(index, 1);
+  updateLocalStorage();
   displayLibrary(library);
+}
+
+function updateLocalStorage() {
+  localStorage.setItem("library", JSON.stringify(library));
 }
 
 form.addEventListener("submit", (e) => {
@@ -101,3 +108,5 @@ form.addEventListener("submit", (e) => {
   displayLibrary(library);
   addBookModal.close();
 });
+
+displayLibrary(library);
