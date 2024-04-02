@@ -16,13 +16,14 @@ function addBookToLibrary(book) {
 
 function displayLibrary(library) {
   cardContainer.innerHTML = "";
-  library.forEach((book) => {
-    const card = createCard(book);
+  library.forEach((book, index) => {
+    const card = createCard(book, index);
+    // card.setAttribute("id", index)
     cardContainer.appendChild(card);
   });
 }
 
-function createCard(book) {
+function createCard(book, index) {
   const card = document.createElement("div");
   const cardBody = document.createElement("div");
   const bookTitle = document.createElement("h2");
@@ -56,6 +57,9 @@ function createCard(book) {
   deleteBookBtn.textContent = "Remove Book";
   deleteBookBtn.setAttribute("class", "btn btn-error");
 
+  changeStatusBtn.addEventListener("click", () => changeReadStatus(index));
+  deleteBookBtn.addEventListener("click", () => removeBook(index));
+
   btnContainer.appendChild(changeStatusBtn);
   btnContainer.appendChild(deleteBookBtn);
   btnContainer.setAttribute("class", "card-actions justify-end mt-5");
@@ -71,6 +75,16 @@ function createCard(book) {
   card.setAttribute("class", "card w-96 bg-base-200 shadow-xl");
 
   return card;
+}
+
+function changeReadStatus(index) {
+  library[index].readStatus = !library[index].readStatus;
+  displayLibrary(library);
+}
+
+function removeBook(index) {
+  library.splice(index, 1);
+  displayLibrary(library);
 }
 
 form.addEventListener("submit", (e) => {
