@@ -1,5 +1,6 @@
 const cardContainer = document.querySelector("#card-container");
 const form = document.querySelector("#add-book-form");
+const addBookModal = document.querySelector("#add_book_modal");
 
 const library = [];
 
@@ -18,7 +19,6 @@ function displayLibrary(library) {
   cardContainer.innerHTML = "";
   library.forEach((book, index) => {
     const card = createCard(book, index);
-    // card.setAttribute("id", index)
     cardContainer.appendChild(card);
   });
 }
@@ -99,5 +99,5 @@ form.addEventListener("submit", (e) => {
 
   form.reset();
   displayLibrary(library);
+  addBookModal.close();
 });
-
