@@ -99,7 +99,7 @@ form.addEventListener("submit", (e) => {
   const title = document.querySelector("#title").value;
   const author = document.querySelector("#author").value;
   const number = Number(document.querySelector("#number").value);
-  const checkbox = document.querySelector("#checkbox").checked ? true : false;
+  const checkbox = document.querySelector("#checkbox").checked
 
   const book = new Book(title, author, number, checkbox);
   addBookToLibrary(book);
